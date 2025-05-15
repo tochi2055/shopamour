@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 30 67% 94%;
+    --primary-foreground: 24 9.8% 10%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 30 67% 94%;
+    --radius: 0.5rem;
+  }
+
+  :root[data-theme-color="rose"] {
+    --primary: 346 77% 92%;
+    --primary-foreground: 346 77% 12%;
+    --ring: 346 77% 92%;
+  }
+
+  :root[data-theme-color="green"] {
+    --primary: 142 71% 90%;
+    --primary-foreground: 142 71% 10%;
+    --ring: 142 71% 90%;
+  }
+
+  :root[data-theme-color="blue"] {
+    --primary: 210 100% 90%;
+    --primary-foreground: 210 100% 10%;
+    --ring: 210 100% 90%;
+  }
+
+  :root[data-theme-color="purple"] {
+    --primary: 270 80% 90%;
+    --primary-foreground: 270 80% 10%;
+    --ring: 270 80% 90%;
+  }
+
+  :root[data-theme-color="orange"] {
+    --primary: 30 95% 90%;
+    --primary-foreground: 30 95% 10%;
+    --ring: 30 95% 90%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 30 67% 94%;
+    --primary-foreground: 24 9.8% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 30 67% 94%;
+  }
+
+  .dark[data-theme-color="rose"] {
+    --primary: 346 77% 30%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 346 77% 30%;
+  }
+
+  .dark[data-theme-color="green"] {
+    --primary: 142 71% 30%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 142 71% 30%;
+  }
+
+  .dark[data-theme-color="blue"] {
+    --primary: 210 100% 30%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 210 100% 30%;
+  }
+
+  .dark[data-theme-color="purple"] {
+    --primary: 270 80% 30%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 270 80% 30%;
+  }
+
+  .dark[data-theme-color="orange"] {
+    --primary: 30 95% 30%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 30 95% 30%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Font size settings */
+  :root[data-font-size="small"] {
+    font-size: 14px;
+  }
+
+  :root[data-font-size="medium"] {
+    font-size: 16px;
+  }
+
+  :root[data-font-size="large"] {
+    font-size: 18px;
+  }
+
+  /* Reduced motion settings */
+  .reduce-motion * {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Shopping animation styles */
+.shopping-item {
+  will-change: transform, opacity;
+  z-index: 5;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+/* Sidebar styles */
+.sidebar-container {
+  position: fixed;
+  right: 4rem;
+  bottom: 4rem;
+  z-index: 40;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-container.collapsed {
+  transform: translateX(calc(100% - 3rem));
+}
+
+.sidebar-toggle {
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 3rem;
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 41;
+}
+
+.reduce-motion .sidebar-container {
+  transition: none;
+}
