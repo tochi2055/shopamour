@@ -11,7 +11,7 @@ export function FlashSales() {
       name: "Wireless Headphones",
       originalPrice: 199.99,
       salePrice: 129.99,
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/side-view-african-young-man-wireless-headphones-listening-music-while-standing-outdoors_236854-33393.jpg?height=200&width=200",
       timeLeft: "2:15:30",
     },
     {
@@ -19,7 +19,7 @@ export function FlashSales() {
       name: "Smart Watch",
       originalPrice: 299.99,
       salePrice: 199.99,
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/smartwatch-screen-digital-device_53876-96810.avif?height=200&width=200",
       timeLeft: "1:45:10",
     },
     {
@@ -27,7 +27,7 @@ export function FlashSales() {
       name: "Bluetooth Speaker",
       originalPrice: 149.99,
       salePrice: 89.99,
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/still-life-tech-device_23-2150722616.avif?height=200&width=200",
       timeLeft: "3:30:45",
     },
     {
@@ -35,7 +35,7 @@ export function FlashSales() {
       name: "Fitness Tracker",
       originalPrice: 99.99,
       salePrice: 59.99,
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/sport-workout-concept-active-woman-dressed-beige-tracksuit-checks-fitness-results-carries-fitness-mat-bottle-water-exercises-outdoors-poses-against-modern-city-building-listens-music_27360.avif?height=200&width=200",
       timeLeft: "0:59:59",
     },
   ]

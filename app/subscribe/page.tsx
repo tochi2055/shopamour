@@ -67,7 +67,7 @@ export default function SubscribePage() {
 
             <div className="relative h-80 w-full rounded-lg overflow-hidden mb-6">
               <Image
-                src="/placeholder.svg?height=600&width=800"
+                src="/box-market-electronic-ordering-shop-basket_1421-567.avif?height=600&width=800"
                 alt="Newsletter subscription"
                 fill
                 className="object-cover"
