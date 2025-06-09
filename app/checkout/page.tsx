@@ -1,18 +1,16 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
+import React, { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Separator } from "@/components/ui/separator"
-import { useCart } from "@/lib/cart-context"
-import { useRouter } from "next/navigation"
-import { useToast } from "@/hooks/use-toast"
 import { CreditCard, Landmark, Wallet } from "lucide-react"
+import { useCart } from "@/lib/cart-context"
+import { useToast } from "@/hooks/use-toast"
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart()
@@ -43,16 +41,10 @@ export default function CheckoutPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Validate form
-    if (
-      !formData.firstName ||
-      !formData.lastName ||
-      !formData.email ||
-      !formData.address ||
-      !formData.city ||
-      !formData.state ||
-      !formData.zipCode
-    ) {
+    // Validate form fields
+    const requiredFields = ["firstName", "lastName", "email", "address", "city", "state", "zipCode"]
+    const hasEmptyField = requiredFields.some((field) => !formData[field as keyof typeof formData])
+    if (hasEmptyField) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields.",
@@ -61,12 +53,13 @@ export default function CheckoutPage() {
       return
     }
 
-    // Proceed to payment
+    // In a real app, you’d handle payment and order creation here
     router.push("/payment")
   }
 
+  // Redirect to cart if there are no items
   if (items.length === 0) {
-    router.push("/cart")
+    if (typeof window !== "undefined") router.push("/cart")
     return null
   }
 
@@ -83,8 +76,10 @@ export default function CheckoutPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Shipping & Payment */}
         <div className="lg:col-span-2">
           <form onSubmit={handleSubmit}>
+            {/* Shipping Info */}
             <Card className="mb-8">
               <CardHeader>
                 <CardTitle>Shipping Information</CardTitle>
@@ -94,13 +89,7 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
-                    <Input
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      required
-                    />
+                    <Input id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last Name</Label>
@@ -142,6 +131,7 @@ export default function CheckoutPage() {
               </CardContent>
             </Card>
 
+            {/* Payment Method */}
             <Card className="mb-8">
               <CardHeader>
                 <CardTitle>Payment Method</CardTitle>
@@ -187,6 +177,7 @@ export default function CheckoutPage() {
           </form>
         </div>
 
+        {/* Order Summary */}
         <div className="lg:col-span-1">
           <Card>
             <CardHeader>
@@ -198,7 +189,7 @@ export default function CheckoutPage() {
             <CardContent className="space-y-4">
               {items.map((item) => (
                 <div key={item.id} className="flex justify-between">
-                  <div className="flex-1">
+                  <div>
                     <p className="font-medium">{item.name}</p>
                     <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
                   </div>
