@@ -1,5 +1,7 @@
 "use client"
 
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "@/lib/firebase"
 import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -8,8 +10,6 @@ import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Eye, EyeOff } from "lucide-react"
-import { auth } from "@/lib/firebase"
-
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -18,55 +18,20 @@ export default function LoginPage() {
   const [error, setError] = useState("")
   const router = useRouter()
 
- const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  setError("")
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password)
-
-    // Save session locally if you want
-    localStorage.setItem("user", JSON.stringify({ email }))
-
-    // Redirect to dashboard
-    router.push("/dashboard")
-  } catch (err) {
-    console.error(err)
-    setError("Invalid email or password")
-  }
-}
-
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError("")
 
     try {
-     import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "@/lib/firebase"
+      await signInWithEmailAndPassword(auth, email, password)
 
-// ...
-
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  setError("")
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password)
-
-    // Save session locally if needed
-    localStorage.setItem("user", JSON.stringify({ email }))
-
-    // Redirect to dashboard
-    router.push("/dashboard")
-  } catch (err) {
-    console.error(err)
-    setError("Invalid email or password")
-  }
-}
-
-      // Save session locally if you want (e.g., localStorage)
+      // Save session locally if you want
       localStorage.setItem("user", JSON.stringify({ email }))
 
       // Redirect to dashboard
       router.push("/dashboard")
     } catch (err) {
+      console.error(err)
       setError("Invalid email or password")
     }
   }
@@ -110,7 +75,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                <span className="sr-only">{showPassword ? "Hide password" : "Show password"}</span>
+                <span className="sr-only">
+                  {showPassword ? "Hide password" : "Show password"}
+                </span>
               </Button>
             </div>
           </div>
@@ -132,5 +99,3 @@ const handleSubmit = async (e: React.FormEvent) => {
     </div>
   )
 }
-// This code is a simple login page using React and Next.js.
-// It includes a form for email and password input, with error handling and password visibility toggle.
