@@ -1,12 +1,12 @@
 "use client"
 
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { auth } from "@/lib/firebase"
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useAuth } from "@/components/auth-provider"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Eye, EyeOff } from "lucide-react"
@@ -17,17 +17,32 @@ export default function SignupPage() {
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState("")
-  const { signup } = useAuth()
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
 
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters")
+      return
+    }
+
     try {
-      await signup(name, email, password)
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+
+      // Optionally update display name in Firebase Auth profile
+      if (auth.currentUser && name) {
+        await updateProfile(auth.currentUser, { displayName: name })
+      }
+
+      // Save user data locally if needed
+      localStorage.setItem("user", JSON.stringify({ email, name }))
+
+      // Redirect to dashboard
       router.push("/dashboard")
     } catch (err) {
+      console.error(err)
       setError("Failed to create account")
     }
   }
