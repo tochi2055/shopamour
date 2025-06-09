@@ -30,59 +30,54 @@ export default function MessagesPage() {
   const [activeContact, setActiveContact] = useState<Contact | null>(null)
   const [inputValue, setInputValue] = useState("")
   const [searchValue, setSearchValue] = useState("")
-  const [messages, setMessages] = useState<Record<string, Message[]>>({
-    "contact-1": [
-      {
-        id: "1",
-        sender: "other",
-        text: "Hi there! I'm interested in the leather jacket you posted. Is it still available?",
-        timestamp: new Date(Date.now() - 3600000), // 1 hour ago
-        read: true,
-      },
-      {
-        id: "2",
-        sender: "user",
-        text: "Yes, it's still available! Are you interested in purchasing it?",
-        timestamp: new Date(Date.now() - 3000000), // 50 minutes ago
-        read: true,
-      },
-      {
-        id: "3",
-        sender: "other",
-        text: "Great! Could you tell me more about the condition? Any scratches or wear?",
-        timestamp: new Date(Date.now() - 2400000), // 40 minutes ago
-        read: true,
-      },
-    ],
-    "contact-2": [
-      {
-        id: "1",
-        sender: "other",
-        text: "Hello! Do you ship internationally?",
-        timestamp: new Date(Date.now() - 86400000), // 1 day ago
-        read: true,
-      },
-      {
-        id: "2",
-        sender: "user",
-        text: "Hi! Yes, we do ship internationally, but shipping costs vary by country.",
-        timestamp: new Date(Date.now() - 82800000), // 23 hours ago
-        read: true,
-      },
-      {
-        id: "3",
-        sender: "other",
-        text: "Perfect! I'm in Canada. Could you check the shipping cost for me?",
-        timestamp: new Date(Date.now() - 79200000), // 22 hours ago
-   const messages = {
-  "contact-3": [
+const [messages, setMessages] = useState<Record<string, Message[]>>({
+  "contact-1": [
     {
-      id: "0",
+      id: "1",
       sender: "other",
-      text: "Checking in again.",
+      text: "Hi there! I'm interested in the leather jacket you posted. Is it still available?",
+      timestamp: new Date(Date.now() - 3600000), // 1 hour ago
+      read: true,
+    },
+    {
+      id: "2",
+      sender: "user",
+      text: "Yes, it's still available! Are you interested in purchasing it?",
+      timestamp: new Date(Date.now() - 3000000), // 50 minutes ago
+      read: true,
+    },
+    {
+      id: "3",
+      sender: "other",
+      text: "Great! Could you tell me more about the condition? Any scratches or wear?",
+      timestamp: new Date(Date.now() - 2400000), // 40 minutes ago
+      read: true,
+    },
+  ],
+  "contact-2": [
+    {
+      id: "1",
+      sender: "other",
+      text: "Hello! Do you ship internationally?",
+      timestamp: new Date(Date.now() - 86400000), // 1 day ago
+      read: true,
+    },
+    {
+      id: "2",
+      sender: "user",
+      text: "Hi! Yes, we do ship internationally, but shipping costs vary by country.",
+      timestamp: new Date(Date.now() - 82800000), // 23 hours ago
+      read: true,
+    },
+    {
+      id: "3",
+      sender: "other",
+      text: "Perfect! I'm in Canada. Could you check the shipping cost for me?",
       timestamp: new Date(Date.now() - 79200000), // 22 hours ago
       read: false,
     },
+  ],
+  "contact-3": [
     {
       id: "1",
       sender: "other",
@@ -98,17 +93,11 @@ export default function MessagesPage() {
       read: true,
     },
   ],
-};
-      id: "2",
-      sender: "user",
-      text: "That's great to hear! I'm glad you like them.",
-      timestamp: new Date(Date.now() - 169200000), // 47 hours ago
-      read: true,
-    },
-  ],
-};
+})
 
-
+  // Sample contacts data
+  // In a real application, this would likely come from an API or database  
+  
   const contacts: Contact[] = [
     {
       id: "contact-1",
