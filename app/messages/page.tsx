@@ -74,31 +74,40 @@ export default function MessagesPage() {
         sender: "other",
         text: "Perfect! I'm in Canada. Could you check the shipping cost for me?",
         timestamp: new Date(Date.now() - 79200000), // 22 hours ago
-        read: false,
-      },
-    ],
-    "contact-3": [\
-      {  - 79200000), // 22 hours ago
-        read: false,
-      },
-    ],
-    "contact-3": [
-      {
-        id: "1",
-        sender: "other",
-        text: "Hey! I just received my order. The shoes are amazing, thank you!",
-        timestamp: new Date(Date.now() - 172800000), // 2 days ago
-        read: true,
-      },
-      {
-        id: "2",
-        sender: "user",
-        text: "That's great to hear! I'm glad you like them.",
-        timestamp: new Date(Date.now() - 169200000), // 47 hours ago
-        read: true,
-      },
-    ],
-  })
+   const messages = {
+  "contact-3": [
+    {
+      id: "0",
+      sender: "other",
+      text: "Checking in again.",
+      timestamp: new Date(Date.now() - 79200000), // 22 hours ago
+      read: false,
+    },
+    {
+      id: "1",
+      sender: "other",
+      text: "Hey! I just received my order. The shoes are amazing, thank you!",
+      timestamp: new Date(Date.now() - 172800000), // 2 days ago
+      read: true,
+    },
+    {
+      id: "2",
+      sender: "user",
+      text: "That's great to hear! I'm glad you like them.",
+      timestamp: new Date(Date.now() - 169200000), // 47 hours ago
+      read: true,
+    },
+  ],
+};
+      id: "2",
+      sender: "user",
+      text: "That's great to hear! I'm glad you like them.",
+      timestamp: new Date(Date.now() - 169200000), // 47 hours ago
+      read: true,
+    },
+  ],
+};
+
 
   const contacts: Contact[] = [
     {
