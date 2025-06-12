@@ -10,15 +10,15 @@ import { useToast } from "@/hooks/use-toast"
 import type { User } from "@/lib/types"
 
 interface UserProfileProps {
-  user: User
+  user: User | null
 }
 
 export function UserProfile({ user }: UserProfileProps) {
   const { toast } = useToast()
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({
-    name: user.name,
-    email: user.email,
+    name: user?.name,
+    email: user?.email,
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,11 +67,11 @@ export function UserProfile({ user }: UserProfileProps) {
             <div className="space-y-4">
               <div className="grid gap-1">
                 <div className="text-sm text-muted-foreground">Full Name</div>
-                <div>{user.name}</div>
+                <div>{user?.name}</div>
               </div>
               <div className="grid gap-1">
                 <div className="text-sm text-muted-foreground">Email</div>
-                <div>{user.email}</div>
+                <div>{user?.email}</div>
               </div>
               <div className="flex justify-end">
                 <Button onClick={() => setIsEditing(true)}>Edit Profile</Button>
